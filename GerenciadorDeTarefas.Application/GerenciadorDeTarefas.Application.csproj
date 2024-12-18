@@ -11,8 +11,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="UseCase\Tasks\GetById\" />
-    <Folder Include="UseCase\Tasks\GetAll\" />
     <Folder Include="UseCase\Tasks\Delete\" />
     <Folder Include="UseCase\Tasks\Update\" />
   </ItemGroup>

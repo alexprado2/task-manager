@@ -2,7 +2,7 @@
 
 public enum TypeStatus
 {
-    Concluida,
-    EmAndamento,
-    Aguardando
+    Concluida = 0,
+    EmAndamento = 1,
+    Aguardando = 2
 }
