@@ -1,6 +1,6 @@
 ﻿namespace GerenciadorDeTarefas.Communication.Responses;
 
-public class ResponsesErrosJson
+public class ResponsesErrorJson
 {
     public List<string> Errors { get; set; } = [];
 }

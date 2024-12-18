@@ -2,6 +2,7 @@
 using GerenciadorDeTarefas.Application.UseCase.Tasks.Create;
 using GerenciadorDeTarefas.Application.UseCase.Tasks.GetAll;
 using GerenciadorDeTarefas.Application.UseCase.Tasks.GetById;
+using GerenciadorDeTarefas.Application.UseCase.Tasks.Update;
 using GerenciadorDeTarefas.Communication.Requests;
 using GerenciadorDeTarefas.Communication.Responses;
 using Microsoft.AspNetCore.Mvc;
@@ -11,7 +12,7 @@ public class TasksController : TasksBaseController
 {
     [HttpPost]
     [ProducesResponseType(typeof(ResponseCreateTasksJson), StatusCodes.Status201Created)]
-    [ProducesResponseType(typeof(ResponsesErrosJson), StatusCodes.Status400BadRequest)]
+    [ProducesResponseType(typeof(ResponsesErrorJson), StatusCodes.Status400BadRequest)]
     public IActionResult Create([FromBody] RequestTasksJson request)
     {
         var response = new CreateTasksUseCase().Execute(request);
@@ -36,7 +37,7 @@ public class TasksController : TasksBaseController
 
     [HttpGet("{id}")]
     [ProducesResponseType(typeof(ResponseTasksJson), StatusCodes.Status200OK)]
-    [ProducesResponseType(typeof(ResponsesErrosJson), StatusCodes.Status404NotFound)]
+    [ProducesResponseType(typeof(ResponsesErrorJson), StatusCodes.Status404NotFound)]
     public IActionResult Get(int id)
     {
         var useCase = new GetTasksById();
@@ -44,6 +45,18 @@ public class TasksController : TasksBaseController
 
         return Ok(response);
     }
+
+    [HttpPut("{id}")]
+    [ProducesResponseType(StatusCodes.Status204NoContent)]
+    [ProducesResponseType(typeof(ResponsesErrorJson), StatusCodes.Status400BadRequest)]
+    public IActionResult Update([FromRoute] int id, [FromBody] RequestTasksJson request)
+    {
+        var useCase = new UpdateTaskUseCase();
+        useCase.Execute(id, request);
+
+        return NoContent();
+    }
+
 
 
 
