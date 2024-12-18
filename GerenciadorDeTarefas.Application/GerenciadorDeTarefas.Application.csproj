@@ -10,8 +10,4 @@
     <ProjectReference Include="..\GerenciadorDeTarefas.Communication\GerenciadorDeTarefas.Communication.csproj" />
   </ItemGroup>
 
-  <ItemGroup>
-    <Folder Include="UseCase\Tasks\Delete\" />
-  </ItemGroup>
-
 </Project>

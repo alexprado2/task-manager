@@ -1,5 +1,6 @@
 ﻿
 using GerenciadorDeTarefas.Application.UseCase.Tasks.Create;
+using GerenciadorDeTarefas.Application.UseCase.Tasks.Delete;
 using GerenciadorDeTarefas.Application.UseCase.Tasks.GetAll;
 using GerenciadorDeTarefas.Application.UseCase.Tasks.GetById;
 using GerenciadorDeTarefas.Application.UseCase.Tasks.Update;
@@ -57,7 +58,15 @@ public class TasksController : TasksBaseController
         return NoContent();
     }
 
+    [HttpDelete("{id}")]
+    [ProducesResponseType(StatusCodes.Status204NoContent)]
+    [ProducesResponseType(typeof(ResponsesErrorJson), StatusCodes.Status404NotFound)]
 
+    public IActionResult Delete(int id)
+    {
+        var useCase = new DeleteTaskByIdUseCase();
+        useCase.Execute(id);
 
-
+        return NoContent();
+    }
 }
